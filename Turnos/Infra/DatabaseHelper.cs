@@ -98,7 +98,55 @@ namespace Turnos.Infra
         }
 
 
+        public static bool BuscaPacient(string dni)
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
 
+                string query = "SELECT * FROM Pacientes WHERE dni = @dni";
+
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@dni", dni);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public static (string nombre, string apellido, string obraSocial, string numeroObraSocial) BuscarPaciente(string dni)
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT nombre, apellido, obra_social, numero_obra_social FROM Pacientes WHERE dni = @dni";
+
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@dni", dni);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return (
+                                nombre: reader.GetString(0),
+                                apellido: reader.GetString(1),
+                                obraSocial: reader.GetString(2),
+                                numeroObraSocial: reader.GetString(3)
+                            );
+                        }
+                        else
+                        {
+                            return (null, null, null, null);
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }
