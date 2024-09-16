@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Turnos.Formularios.Nuevo;
 
 namespace Turnos.Formularios
 {
@@ -15,6 +16,12 @@ namespace Turnos.Formularios
         public FormPrincipal()
         {
             InitializeComponent();
+        }
+        
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+            FormNuevoTurno nuevoTurno = new FormNuevoTurno();
+            nuevoTurno.Show();
         }
     }
 }

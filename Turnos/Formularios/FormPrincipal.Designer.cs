@@ -28,18 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dataGridViewTurnos = new DataGridView();
+            btnAsignar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTurnos).BeginInit();
             SuspendLayout();
+            // 
+            // dataGridViewTurnos
+            // 
+            dataGridViewTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewTurnos.Location = new Point(134, 254);
+            dataGridViewTurnos.Name = "dataGridViewTurnos";
+            dataGridViewTurnos.Size = new Size(928, 244);
+            dataGridViewTurnos.TabIndex = 1;
+            // 
+            // btnAsignar
+            // 
+            btnAsignar.Location = new Point(134, 182);
+            btnAsignar.Name = "btnAsignar";
+            btnAsignar.Size = new Size(162, 30);
+            btnAsignar.TabIndex = 2;
+            btnAsignar.Text = "Nuevo";
+            btnAsignar.UseVisualStyleBackColor = true;
+            btnAsignar.Click += btnAsignar_Click;
             // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1208, 602);
+            Controls.Add(btnAsignar);
+            Controls.Add(dataGridViewTurnos);
             Name = "FormPrincipal";
             Text = "FormPrincipal";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTurnos).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+        private DataGridView dataGridViewTurnos;
+        private Button btnAsignar;
     }
 }
