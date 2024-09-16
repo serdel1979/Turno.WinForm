@@ -36,9 +36,9 @@
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(297, 208);
+            btnIngresar.Location = new Point(150, 208);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(75, 23);
+            btnIngresar.Size = new Size(222, 23);
             btnIngresar.TabIndex = 0;
             btnIngresar.Text = "Ingresar";
             btnIngresar.UseVisualStyleBackColor = true;
@@ -46,9 +46,9 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(150, 208);
+            btnSalir.Location = new Point(150, 250);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(75, 23);
+            btnSalir.Size = new Size(222, 23);
             btnSalir.TabIndex = 1;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -73,7 +73,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(530, 328);
+            ClientSize = new Size(527, 333);
             Controls.Add(textPassword);
             Controls.Add(textUser);
             Controls.Add(btnSalir);

@@ -1,4 +1,5 @@
 using Microsoft.Data.Sqlite;
+using Turnos.Formularios;
 using Turnos.Infra;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -23,11 +24,10 @@ namespace Turnos
 
             if (esValido)
             {
-                MessageBox.Show("Inicio de sesión exitoso");
-                // Abrir el formulario principal
-                //   FormPrincipal formPrincipal = new FormPrincipal();
-                //   formPrincipal.Show();
-                //   this.Hide();
+              
+                FormPrincipal formPrincipal = new FormPrincipal();
+                formPrincipal.Show();
+                this.Hide();
             }
             else
             {
