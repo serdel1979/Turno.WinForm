@@ -17,11 +17,18 @@ namespace Turnos.Formularios
         {
             InitializeComponent();
         }
-        
+
+        public int i = 0;
         private void btnAsignar_Click(object sender, EventArgs e)
         {
             FormNuevoTurno nuevoTurno = new FormNuevoTurno();
             nuevoTurno.Show();
+        }
+
+        private void FormPrincipal_Activated(object sender, EventArgs e)
+        {
+            i++;
+            label1.Text = $"Cargando {i}";
         }
     }
 }

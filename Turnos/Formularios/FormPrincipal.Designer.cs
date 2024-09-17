@@ -30,6 +30,7 @@
         {
             dataGridViewTurnos = new DataGridView();
             btnAsignar = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTurnos).BeginInit();
             SuspendLayout();
             // 
@@ -51,21 +52,34 @@
             btnAsignar.UseVisualStyleBackColor = true;
             btnAsignar.Click += btnAsignar_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(345, 190);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 3;
+            label1.Text = "label1";
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1208, 602);
+            Controls.Add(label1);
             Controls.Add(btnAsignar);
             Controls.Add(dataGridViewTurnos);
             Name = "FormPrincipal";
             Text = "FormPrincipal";
+            Activated += FormPrincipal_Activated;
             ((System.ComponentModel.ISupportInitialize)dataGridViewTurnos).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private DataGridView dataGridViewTurnos;
         private Button btnAsignar;
+        private Label label1;
     }
 }
