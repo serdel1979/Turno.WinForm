@@ -31,20 +31,21 @@
             dataGridViewTurnos = new DataGridView();
             btnAsignar = new Button();
             label1 = new Label();
+            monthCalendarTurnosHoy = new MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTurnos).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewTurnos
             // 
             dataGridViewTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTurnos.Location = new Point(134, 254);
+            dataGridViewTurnos.Location = new Point(134, 325);
             dataGridViewTurnos.Name = "dataGridViewTurnos";
-            dataGridViewTurnos.Size = new Size(928, 244);
+            dataGridViewTurnos.Size = new Size(864, 244);
             dataGridViewTurnos.TabIndex = 1;
             // 
             // btnAsignar
             // 
-            btnAsignar.Location = new Point(134, 182);
+            btnAsignar.Location = new Point(134, 246);
             btnAsignar.Name = "btnAsignar";
             btnAsignar.Size = new Size(162, 30);
             btnAsignar.TabIndex = 2;
@@ -55,17 +56,25 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(345, 190);
+            label1.Location = new Point(362, 254);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 3;
             label1.Text = "label1";
+            // 
+            // monthCalendarTurnosHoy
+            // 
+            monthCalendarTurnosHoy.Location = new Point(134, 52);
+            monthCalendarTurnosHoy.Name = "monthCalendarTurnosHoy";
+            monthCalendarTurnosHoy.TabIndex = 4;
+            monthCalendarTurnosHoy.DateChanged += monthCalendarTurnosHoy_DateChanged;
             // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1208, 602);
+            Controls.Add(monthCalendarTurnosHoy);
             Controls.Add(label1);
             Controls.Add(btnAsignar);
             Controls.Add(dataGridViewTurnos);
@@ -81,5 +90,6 @@
         private DataGridView dataGridViewTurnos;
         private Button btnAsignar;
         private Label label1;
+        private MonthCalendar monthCalendarTurnosHoy;
     }
 }

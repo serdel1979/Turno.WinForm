@@ -17,7 +17,19 @@ namespace Turnos.Formularios.Nuevo
         public FormNuevoTurno()
         {
             InitializeComponent();
+
+            horaTurno.Format = DateTimePickerFormat.Custom;
+            horaTurno.CustomFormat = "HH:mm";
+            horaTurno.ShowUpDown = true;  // Muestra el control tipo spinner
+
+            dataGridTurnosHoy.Columns.Add("hora", "Hora");
+            dataGridTurnosHoy.Columns.Add("nombre", "Nombre");
+            dataGridTurnosHoy.Columns.Add("apellido", "Apellido");
+
+            VerTurnosHoy();
+
         }
+
 
         private void textDni_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -45,11 +57,72 @@ namespace Turnos.Formularios.Nuevo
                 textApellido.Clear();
                 textObraSocial.Clear();
                 textNumOS.Clear();
-                MessageBox.Show("Paciente no encontrado");
             }
         }
 
+        private void monthCalendarTurno_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            VerTurnosHoy();
+        }
 
 
+        private void VerTurnosHoy()
+        {
+            DateTime fechaSeleccionada = monthCalendarTurno.SelectionStart; // Obtener la fecha seleccionada
+            label7.Text = $"Turnos asignados para el {fechaSeleccionada.Day} del mes {fechaSeleccionada.Month} del {fechaSeleccionada.Year}";
+            MostrarTurnosDelDia(fechaSeleccionada); // Llamar a la función que consulta y muestra los turnos
+
+        }
+
+        private void MostrarTurnosDelDia(DateTime fecha)
+        {
+            // Limpiar el DataGridView
+            dataGridTurnosHoy.Rows.Clear();
+
+            // Llamar a la función que obtiene los turnos de la base de datos
+            DataTable turnos = DatabaseHelper.ObtenerTurnosPorFecha(fecha);
+
+            // Llenar el DataGridView con los resultados obtenidos
+            foreach (DataRow row in turnos.Rows)
+            {
+                dataGridTurnosHoy.Rows.Add(row["hora"], row["nombre"], row["apellido"]);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textNombre.Text == "" || textApellido.Text == "" || textObraSocial.Text == "" || textNumOS.Text == "")
+            {
+                MessageBox.Show("No puede guardar datos en blanco","",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+
+            string dni = textDni.Text;
+            var paciente = DatabaseHelper.BuscarPaciente(dni);
+
+            // Si el paciente no existe, lo guardamos primero
+            if (paciente.nombre == null)
+            {
+                DatabaseHelper.GuardarNuevoPaciente(dni, textNombre.Text, textApellido.Text, textObraSocial.Text, textNumOS.Text);
+                paciente = DatabaseHelper.BuscarPaciente(dni); // Buscar nuevamente para obtener el ID recién creado
+            }
+
+            // Obtener la fecha y la hora seleccionada
+            DateTime fechaSeleccionada = monthCalendarTurno.SelectionStart;
+            DateTime horaSeleccionada = horaTurno.Value;
+
+            // Combinar la fecha y la hora
+            DateTime fechaHoraTurno = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day, horaSeleccionada.Hour, horaSeleccionada.Minute, 0);
+
+            // Guardar el turno con el id del paciente y la fecha/hora seleccionada
+            DatabaseHelper.GuardarTurno(paciente.id, fechaHoraTurno);
+
+            VerTurnosHoy();
+
+            MessageBox.Show("Turno confirmado para el paciente: " + paciente.nombre + " " + paciente.apellido,"",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+
+
+        }
     }
 }
