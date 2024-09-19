@@ -40,10 +40,10 @@
             label4 = new Label();
             label5 = new Label();
             button1 = new Button();
-            horaTurno = new DateTimePicker();
             dataGridTurnosHoy = new DataGridView();
             label6 = new Label();
             label7 = new Label();
+            comboHora = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridTurnosHoy).BeginInit();
             SuspendLayout();
             // 
@@ -60,6 +60,7 @@
             textDni.Name = "textDni";
             textDni.Size = new Size(244, 23);
             textDni.TabIndex = 1;
+            textDni.TextChanged += textDni_TextChanged;
             textDni.KeyPress += textDni_KeyPress;
             // 
             // textNombre
@@ -68,6 +69,7 @@
             textNombre.Name = "textNombre";
             textNombre.Size = new Size(244, 23);
             textNombre.TabIndex = 2;
+            textNombre.TextChanged += textNombre_TextChanged;
             // 
             // textApellido
             // 
@@ -75,6 +77,7 @@
             textApellido.Name = "textApellido";
             textApellido.Size = new Size(244, 23);
             textApellido.TabIndex = 3;
+            textApellido.TextChanged += textApellido_TextChanged;
             // 
             // textObraSocial
             // 
@@ -82,6 +85,7 @@
             textObraSocial.Name = "textObraSocial";
             textObraSocial.Size = new Size(244, 23);
             textObraSocial.TabIndex = 4;
+            textObraSocial.TextChanged += textObraSocial_TextChanged;
             // 
             // textNumOS
             // 
@@ -89,6 +93,7 @@
             textNumOS.Name = "textNumOS";
             textNumOS.Size = new Size(244, 23);
             textNumOS.TabIndex = 5;
+            textNumOS.TextChanged += textNumOS_TextChanged;
             // 
             // label1
             // 
@@ -145,15 +150,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // horaTurno
-            // 
-            horaTurno.CustomFormat = "";
-            horaTurno.Location = new Point(521, 508);
-            horaTurno.Name = "horaTurno";
-            horaTurno.ShowUpDown = true;
-            horaTurno.Size = new Size(230, 23);
-            horaTurno.TabIndex = 12;
-            // 
             // dataGridTurnosHoy
             // 
             dataGridTurnosHoy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -180,15 +176,25 @@
             label7.TabIndex = 15;
             label7.Text = "Turnos asignados para ";
             // 
+            // comboHora
+            // 
+            comboHora.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboHora.FormattingEnabled = true;
+            comboHora.Items.AddRange(new object[] { "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00" });
+            comboHora.Location = new Point(521, 508);
+            comboHora.Name = "comboHora";
+            comboHora.Size = new Size(224, 23);
+            comboHora.TabIndex = 16;
+            // 
             // FormNuevoTurno
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1019, 711);
+            Controls.Add(comboHora);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(dataGridTurnosHoy);
-            Controls.Add(horaTurno);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -222,9 +228,9 @@
         private Label label4;
         private Label label5;
         private Button button1;
-        private DateTimePicker horaTurno;
         private DataGridView dataGridTurnosHoy;
         private Label label6;
         private Label label7;
+        private ComboBox comboHora;
     }
 }

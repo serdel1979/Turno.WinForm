@@ -68,6 +68,7 @@
             textPassword.PasswordChar = '*';
             textPassword.Size = new Size(222, 23);
             textPassword.TabIndex = 3;
+            textPassword.KeyPress += textPassword_KeyPress;
             // 
             // FormInicio
             // 

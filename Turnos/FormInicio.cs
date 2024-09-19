@@ -15,6 +15,25 @@ namespace Turnos
         private void btnIngresar_Click(object sender, EventArgs e)
         {
 
+            verificaUsuario();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void textPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                verificaUsuario();
+            }
+        }
+
+        private void verificaUsuario()
+        {
             string username = textUser.Text;
             string password = textPassword.Text;
 
@@ -24,7 +43,7 @@ namespace Turnos
 
             if (esValido)
             {
-              
+
                 FormPrincipal formPrincipal = new FormPrincipal();
                 formPrincipal.Show();
                 this.Hide();
@@ -33,11 +52,6 @@ namespace Turnos
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
             }
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

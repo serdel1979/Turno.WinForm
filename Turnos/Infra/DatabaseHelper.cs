@@ -207,7 +207,7 @@ namespace Turnos.Infra
                 SELECT t.hora, p.nombre, p.apellido, p.obra_social, p.numero_obra_social
                 FROM Turnos t
                 JOIN Pacientes p ON t.id_paciente = p.id
-                WHERE t.fecha = @fecha";
+                WHERE t.fecha = @fecha order by t.hora";
 
                 using (var command = new SqliteCommand(query, connection))
                 {

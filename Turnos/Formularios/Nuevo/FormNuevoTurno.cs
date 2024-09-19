@@ -18,9 +18,9 @@ namespace Turnos.Formularios.Nuevo
         {
             InitializeComponent();
 
-            horaTurno.Format = DateTimePickerFormat.Custom;
-            horaTurno.CustomFormat = "HH:mm";
-            horaTurno.ShowUpDown = true;  // Muestra el control tipo spinner
+            //horaTurno.Format = DateTimePickerFormat.Custom;
+            //horaTurno.CustomFormat = "HH:mm";
+            //horaTurno.ShowUpDown = true;  // Muestra el control tipo spinner
 
             dataGridTurnosHoy.Columns.Add("hora", "Hora");
             dataGridTurnosHoy.Columns.Add("nombre", "Nombre");
@@ -39,6 +39,15 @@ namespace Turnos.Formularios.Nuevo
                 BuscarPaciente();
             }
         }
+
+
+        private void toUpper(TextBox textBox)
+        {
+            textBox.Text = textBox.Text.ToUpper();
+            textBox.SelectionStart = textBox.Text.Length;
+        }
+
+
         private void BuscarPaciente()
         {
             string dni = textDni.Text;
@@ -91,9 +100,9 @@ namespace Turnos.Formularios.Nuevo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textNombre.Text == "" || textApellido.Text == "" || textObraSocial.Text == "" || textNumOS.Text == "")
+            if (textNombre.Text == "" || textApellido.Text == "" || textObraSocial.Text == "" || textNumOS.Text == "" || comboHora.Text == "")
             {
-                MessageBox.Show("No puede guardar datos en blanco","",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("No puede guardar datos en blanco", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -109,7 +118,9 @@ namespace Turnos.Formularios.Nuevo
 
             // Obtener la fecha y la hora seleccionada
             DateTime fechaSeleccionada = monthCalendarTurno.SelectionStart;
-            DateTime horaSeleccionada = horaTurno.Value;
+            // DateTime horaSeleccionada = horaTurno.Value;
+
+            DateTime horaSeleccionada = DateTime.ParseExact(comboHora.Text, "HH:mm", null);
 
             // Combinar la fecha y la hora
             DateTime fechaHoraTurno = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day, horaSeleccionada.Hour, horaSeleccionada.Minute, 0);
@@ -119,10 +130,35 @@ namespace Turnos.Formularios.Nuevo
 
             VerTurnosHoy();
 
-            MessageBox.Show("Turno confirmado para el paciente: " + paciente.nombre + " " + paciente.apellido,"",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Turno confirmado para el paciente: " + paciente.nombre + " " + paciente.apellido, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
 
+        }
+
+        private void textDni_TextChanged(object sender, EventArgs e)
+        {
+            toUpper(sender as TextBox);
+        }
+
+        private void textNombre_TextChanged(object sender, EventArgs e)
+        {
+            toUpper(sender as TextBox);
+        }
+
+        private void textApellido_TextChanged(object sender, EventArgs e)
+        {
+            toUpper(sender as TextBox);
+        }
+
+        private void textObraSocial_TextChanged(object sender, EventArgs e)
+        {
+            toUpper(sender as TextBox);
+        }
+
+        private void textNumOS_TextChanged(object sender, EventArgs e)
+        {
+            toUpper(sender as TextBox);
         }
     }
 }
